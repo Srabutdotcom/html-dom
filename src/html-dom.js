@@ -1,6 +1,11 @@
 const xmlnNS = "http://www.w3.org/1999/xhtml"
 const svgNS = 'http://www.w3.org/2000/svg'
 
+if(Object.hasOwn(self,'document')==false){
+  const { DOMParser } = await import("https://esm.sh/linkedom");
+  self['document'] = new DOMParser().parseFromString(`<!DOCTYPE html>`);
+}
+
 function getHandler(NS) {
   return {
     get: function (/* target, property, receiver */) {
